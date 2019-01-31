@@ -10,13 +10,20 @@ import { CustomerModel } from './../../models/Customer/CustomerModel';
   styleUrls: ['./customers.page.scss'],
 })
 export class CustomersPage implements OnInit {
-  results: Observable<CustomerModel>; // resultado de busqueda
+  // customers: Observable<CustomerModel>; // resultado de busqueda
+  customers: CustomerModel[];
   filterName: string = '';
 
   constructor(private customerService: CustomerService) { }
 
-  searchCustomers() {
-    this.results = this.customerService.getCustomers(this.filterName);
+  searchCustomers(): void {
+    // this.customers = this.customerService.getCustomers(this.filterName);
+    this.customerService.getCustomers(this.filterName)
+        .subscribe(
+            customersResult => {
+              this.customers = customersResult;
+              console.log(this.customers);
+            });
   }
 
   ngOnInit() {

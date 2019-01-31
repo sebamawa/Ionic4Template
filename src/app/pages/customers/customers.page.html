@@ -1,3 +1,4 @@
+<script src="customers.page.ts"></script>
 <ion-header>
   <ion-toolbar>
     <ion-title>customers</ion-title>
@@ -6,4 +7,8 @@
 
 <ion-content>
   <ion-searchbar [(ngModel)]="filterName" (ionChange)="searchCustomers($event)" ></ion-searchbar>
+
+  <ul>
+    <li *ngFor="let customer of customers ">{{ customer.name }}</li>
+  </ul>
 </ion-content>

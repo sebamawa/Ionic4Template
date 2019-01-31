@@ -15,7 +15,9 @@ export class CustomerService {
   constructor(private http: HttpClient) { }
 
   getCustomers(name: string): Observable<CustomerModel> {
-    this.url = `http://localhost:3000/api/Customers?filter[where][name]=${encodeURI(name)}`;
+    // this.url = `http://localhost:3000/api/Customers?filter[where][name]=${encodeURI(name)}`;
+    // this.url = `http://localhost:3000/api/Customers?filter={"where":{"name":{"like":"${encodeURI(name)}","options":"i"}}}` ;
+    this.url = `http://localhost:3000/api/Customers?filter[where][name][like]=${encodeURI(name)}%`;
     console.log(this.url);
     return this.http.get<CustomerModel>(this.url);
   }
